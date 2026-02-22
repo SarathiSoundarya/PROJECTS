@@ -1,0 +1,10 @@
+#ignore .pyc ,venv files
+*.pyc
+venv/
+.env*
+static/*
+*.safetensors
+# recordings
+*.mp4
+# databases
+*.db

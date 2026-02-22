@@ -1,0 +1,26 @@
+langchain-google-genai == 4.2.0
+python-dotenv ==1.2.1
+langchain-mcp-adapters == 0.2.1
+mcp == 1.26.0
+geopy == 2.4.1
+langchain == 1.2.10 
+langgraph = 1.0.8
+streamlit == 1.54.0
+plotly == 6.5.2
+scipy == 1.17.0
+pandas == 2.2.3
+chromadb ==1.5.0
+sentence-transformers == 5.2.3
+pypdf == 6.7.1
+geopy == 2.4.1
+langchain-core == 1.2.14
+langchain-text-splitters == 1.1.0
+langchain-community==0.4.1
+langchain-huggingface == 1.2.0
+langchain-google-genai == 4.2.1
+langchain-prebuilt == 1.0.8
+transformers == 4.57.6
+torch == 2.10.0
+accelerate == 1.12.0
+langchain-ollama == 1.0.1
+langchain-openai == 1.1.10

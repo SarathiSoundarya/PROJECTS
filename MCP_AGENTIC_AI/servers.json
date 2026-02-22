@@ -1,0 +1,17 @@
+{
+
+        "Data and Intelligence Server": {
+            "url": "http://127.0.0.1:7002/mcp",
+            "transport": "streamable-http"},
+
+        "External Services Server": {
+            "url": "http://127.0.0.1:7001/mcp",
+            "transport": "streamable-http"
+        },
+        "Test Server": {
+            "command": "python",
+            "args": ["servers/SERVER_C/test_server.py"],
+            "transport": "stdio"
+        }
+
+}

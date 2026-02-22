@@ -1,0 +1,42 @@
+C:\Users\soundarya.sarathi\AppData\Local\Programs\Python\Python312\python.exe -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+streamlit run app.py --server.port 8001 --server.address 0.0.0.0
+
+After running
+Local URL: http://localhost:8001
+Network URL: http://192.168.x.x:8001
+
+Dockerfile to build an image, this image is an executable code that can be run inside a container.
+------------------------------------------------------------>
+Why copy requirements.txt in the docker file first?
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+Docker will cache the installed packages layer.
+So next time you build:
+If requirements.txt didn’t change → Docker skips pip install.
+So second time requirements.txt → same → cached
+pip install → cached
+COPY . → rebuild only this layer
+
+PYTHONUNBUFFERED=1
+Forces logs to print immediately.
+
+ENV PYTHONDONTWRITEBYTECODE=1
+.pyc = Python Compiled Bytecode
+When Python runs a .py file, it first converts it into an intermediate format called bytecode.
+That bytecode gets stored as:
+__pycache__/filename.cpython-312.pyc
+Example:
+app.py  →  app.cpython-312.pyc
+Docker containers are usually:Stateless,Rebuilt often, We don’t need .pyc persistenc
+
+Streamlit is NOT like FastAPI/Gunicorn. It is single process and event driven. so we cant add workers.
+
+EXPOSE PORT 8001 of the container and run the streamlit app on 8000
+
+--------------------->
+GITHUB Actions
+
+Whenever we want to configue github actions create folders  .github > .workflows > main.yaml file
+
