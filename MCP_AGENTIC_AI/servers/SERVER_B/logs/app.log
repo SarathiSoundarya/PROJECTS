@@ -656,3 +656,13 @@ geopy.exc.GeocoderUnavailable: HTTPSConnectionPool(host='nominatim.openstreetmap
 3  2026-01-11T03:00          6.1        97  None  None  40.712728 -74.006015
 4  2026-01-11T04:00          6.2        97  None  None  40.712728 -74.006015
 2026-02-22 15:41:02,221 - __main__ - INFO - external_services_server.py:161 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\19\1\New York City_2026-01-11_2026-01-17_762e9531-2dc0-45e6-b056-57351959f70a.csv
+2026-02-23 09:14:53,220 - __main__ - INFO - external_services_server.py:118 - In the fetch_environmental_data tool, received place: new york city, start_date: 2026-01-01, end_date: 2026-01-11, shared_folder: C:\Users\soundarya.sarathi\OneDrive - Accenture\study_MATERIALS\PROJECTS\MCP_AGENTIC_AI\static\1\20\1
+2026-02-23 09:14:54,162 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:35 - Geocoding result for city 'new york city': New York, United States
+2026-02-23 09:14:54,170 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:37 - Latitude: 40.7127281, Longitude: -74.0060152, Full Address: New York, United States
+2026-02-23 09:14:58,466 - __main__ - INFO - external_services_server.py:154 - Head of data:          timestamp  temperature  humidity  pm10 pm2_5   latitude  longitude
+0  2026-01-01T00:00         -2.5        53  None  None  40.712728 -74.006015
+1  2026-01-01T01:00         -2.5        56  None  None  40.712728 -74.006015
+2  2026-01-01T02:00         -2.0        58  None  None  40.712728 -74.006015
+3  2026-01-01T03:00         -1.5        60  None  None  40.712728 -74.006015
+4  2026-01-01T04:00         -1.0        62  None  None  40.712728 -74.006015
+2026-02-23 09:14:58,521 - __main__ - INFO - external_services_server.py:161 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_MATERIALS\PROJECTS\MCP_AGENTIC_AI\static\1\20\1\new york city_2026-01-01_2026-01-11_60546b82-e3ac-4221-b3f1-55fc5f505512.csv

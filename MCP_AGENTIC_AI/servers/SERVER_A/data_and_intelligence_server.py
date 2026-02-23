@@ -20,7 +20,7 @@ def data_analysis(user_query:str, csv_filename:str, shared_folder: str)-> str:
     return str(execution_results)
 
 #data visualization tool to create visualizations based on the data analysis results and save the visualizations to the shared folder
-@mcp.tool()
+@mcp.tool()     
 def data_visualization(user_query:str, csv_filename:str, shared_folder: str)-> str:
     """Perform data visualization or generate plots based on the user query and save results to shared folder.
     The user query should contain the filename of the csv file data to analyze and the type of visualization to create. The results should be saved in the shared folder with a unique name. Pass the user query and shared folder path to the data visualization agent and return the results."""

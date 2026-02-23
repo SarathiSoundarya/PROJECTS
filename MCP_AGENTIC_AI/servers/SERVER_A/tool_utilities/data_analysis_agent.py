@@ -22,30 +22,49 @@ def execute_analysis_agent(user_query, shared_folder, csv_filename):
     try:
         logger.info(f"Invoking {AGENT_NAME} with query: {user_query} and shared folder: {shared_folder} and csv filename: {csv_filename}")
         tools = [python_code_exec_tool]
-        csv_path = str(Path(shared_folder) / csv_filename)  # construct full csv path
         
-        #check if the csv file path is present in the csv_path else search in the whole shared folder a level up and if found then update the csv_path with the correct path
-        if not Path(csv_path).is_file():
-            #go a level up in the shared folder and search for the csv file
-            shared_folder_parent = Path(shared_folder).parent
-            #search for the file in the shared folder
+        shared_folder = Path(shared_folder)
+        shared_folder_parent = shared_folder.parent
+
+        csv_path = shared_folder / csv_filename
+
+
+        # Direct path check
+        if not csv_path.is_file():
+
             csv_path = None
+
+            #  Search in parent recursively
             for file in shared_folder_parent.glob("**/*.csv"):
                 if file.name == csv_filename:
-                    csv_path = str(file)
+                    csv_path = file
                     logger.info(f"CSV file found at path: {csv_path}")
                     break
-        if csv_path is None:
-            #check any of the files in the shared folder has the csv filename and if found then update the csv_path with the correct path
-            for file in Path(shared_folder).glob("**/*.csv"):
-                if file.name == csv_filename:
-                    csv_path = str(file)
-                    logger.info(f"CSV file found at path: {csv_path}")
-                    break
+
+            # Fallback → latest csv in parent
             if csv_path is None:
-                logger.error(f"CSV file {csv_filename} not found in shared folder or its parent directory.")
-                return f"Error: CSV file {csv_filename} not found in shared folder or its parent directory."
-        
+                latest_csv = max(
+                    shared_folder_parent.glob("*.csv"),
+                    key=lambda x: x.stat().st_mtime,
+                    default=None
+                )
+
+                if latest_csv:
+                    csv_path = latest_csv
+                    logger.info(f"Latest CSV file found at path: {csv_path}")
+
+
+        # 4 Final validation
+        if csv_path is None:
+            logger.error(
+                f"CSV file {csv_filename} not found in shared folder or parent directory."
+            )
+            return (
+                f"Error: CSV file {csv_filename} not found "
+                f"in shared folder or parent directory."
+            )
+
+        csv_path = str(csv_path)  # convert Path object to string for agent input
         user_query =f"User Query: {user_query}\nShared Folder: {shared_folder}\nCSV FILE Path: {csv_path}, use this CSV file for doing the analysis as per the user query and save the results to shared folder ."
         
         system_instructions = """

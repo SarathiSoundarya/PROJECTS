@@ -1,3 +1,4 @@
+import os
 from langchain.agents import create_agent
 from models import azure_chatopenai_model, google_model
 from .code_execution_tool import python_code_exec_tool
@@ -7,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 logger = get_logger(__name__)
 AGENT_NAME = "plotting_agent"
+
 
 def extract_ai_message(result: dict) -> str:
     """
@@ -26,35 +28,43 @@ def execute_plotting_agent(user_query, shared_folder,csv_filename):
         
         logger.info(f"Invoking {AGENT_NAME} with query: {user_query} and shared folder: {shared_folder} and csv filename: {csv_filename}")
         tools = [python_code_exec_tool]
-        csv_path = str(Path(shared_folder) / csv_filename)  # construct full csv path
-    
-        
-        #check if the csv file path is present in the csv_path else search in the whole shared folder a level up and if found then update the csv_path with the correct path
-        if not Path(csv_path).is_file():
-            #go a level up in the shared folder and search for the csv file
-            shared_folder_parent = Path(shared_folder).parent
-            #search for the file in the shared folder
-            csv_path = None
-            for file in shared_folder_parent.glob("**/*.csv"):
-                if file.name == csv_filename:
-                    csv_path = str(file)
-                    logger.info(f"CSV file found at path: {csv_path}")
-                    break
-            if csv_path is None:
-                logger.error(f"CSV file {csv_filename} not found in shared folder or its parent directory.")
-                return f"Error: CSV file {csv_filename} not found in shared folder or its parent directory."
+        shared_folder = Path(shared_folder)
+        shared_folder_parent = shared_folder.parent
 
-        if csv_path is None:
-            #check any of the files in the shared folder has the csv filename and if found then update the csv_path with the correct path
-            for file in Path(shared_folder).glob("**/*.csv"):
-                if file.name == csv_filename:
-                    csv_path = str(file)
-                    logger.info(f"CSV file found at path: {csv_path}")
-                    break
-            if csv_path is None:
-                logger.error(f"CSV file {csv_filename} not found in shared folder or its parent directory.")
-                return f"Error: CSV file {csv_filename} not found in shared folder or its parent directory."
-        
+        csv_path = shared_folder / csv_filename
+
+
+        # Direct path check
+        if not csv_path.is_file():
+
+            logger.info("CSV not found in shared folder. Searching parent recursively...")
+
+            # Search by exact filename in parent recursively
+            matches = list(shared_folder_parent.glob(f"**/{csv_filename}"))
+
+            if matches:
+                csv_path = max(matches, key=lambda x: x.stat().st_mtime)
+                logger.info(f"CSV file found by name at path: {csv_path}")
+
+            else:
+                # Fallback → latest csv anywhere in parent recursively
+                all_csvs = list(shared_folder_parent.glob("**/*.csv"))
+
+                if all_csvs:
+                    csv_path = max(all_csvs, key=lambda x: x.stat().st_mtime)
+                    logger.info(f"Latest CSV found recursively at path: {csv_path}")
+                else:
+                    csv_path = None
+
+
+        # Final validation
+        if csv_path is None or not Path(csv_path).is_file():
+            logger.error(
+                f"No CSV files found under parent directory: {shared_folder_parent}"
+            )
+            return (
+                f"Error: No CSV files found under parent directory: {shared_folder_parent}"
+            )
         user_query =f"User Query: {user_query}\nShared Folder: {shared_folder}\nCSV FILE Path: {csv_path}, use this CSV file for plotting the graphs as per the user query and save the results to shared folder ."
           
         system_instructions =system_instructions = """
@@ -118,3 +128,10 @@ def execute_plotting_agent(user_query, shared_folder,csv_filename):
         logger.error(f"Error in {AGENT_NAME} invoke method: {e}")
         return "Error executing plotting agent: " + str(e)
             
+
+# if __name__ == "__main__":
+#     user_query="Plot the humidity trend for new york city from 2026-01-01 to 2026-01-11"
+#     shared_folder = r"C:\Users\soundarya.sarathi\OneDrive - Accenture\study_MATERIALS\PROJECTS\MCP_AGENTIC_AI\static\1\20\1"
+#     csv_filename = "new_york_city_environmental_data_2026-01-01_to_2026-01-11.csv"
+#     result = execute_plotting_agent(user_query, shared_folder, csv_filename)
+#     print("Plotting Agent Result:", result)
