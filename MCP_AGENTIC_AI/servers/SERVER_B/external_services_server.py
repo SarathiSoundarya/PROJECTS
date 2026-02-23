@@ -107,15 +107,16 @@ def fetch_environmental_data(
     place: str,
     start_date: str,
     end_date: str,
-    shared_folder: str
+    chat_session_id: str,
+    chat_id: str
 ) -> str:
     """
     Fetch historical environmental data from Open-Meteo
     and store into database. Pass the place, start date, end date and shared folder path as parameters.
-    Date format: YYYY-MM-DD
+    Date format: YYYY-MM-DD. Pass the chat session id and chat id.
     """
     try:
-        logger.info(f"In the fetch_environmental_data tool, received place: {place}, start_date: {start_date}, end_date: {end_date}, shared_folder: {shared_folder}")
+        logger.info(f"In the fetch_environmental_data tool, received place: {place}, start_date: {start_date}, end_date: {end_date}, chat_session_id: {chat_session_id}, chat_id: {chat_id}")
         fetch_geo_weather_details = fetchGeoWeatherDetails(place)
         location = fetch_geo_weather_details.get_lat_long(place)
         if location:
@@ -152,7 +153,8 @@ def fetch_environmental_data(
         #save the dataframe to a csv file in the shared folder
         # Join the static folder with the shared_folder parameter
         logger.info(f"Head of data:{df.head()}")
-        shared_folder = Path(shared_folder)   # convert str → Path
+        shared_folder = r"C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1"
+        shared_folder = Path(shared_folder) / str(chat_session_id) / str(chat_id)
         filename = f"{place}_{start_date}_{end_date}_{uuid.uuid4()}.csv"
         file_path = shared_folder / filename
         

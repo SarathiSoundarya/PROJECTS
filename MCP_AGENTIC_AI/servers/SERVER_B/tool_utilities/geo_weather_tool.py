@@ -45,7 +45,7 @@ class fetchGeoWeatherDetails():
         """Call the weather API using the latitude and longitude to get the current weather conditions."""
         url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
         try:
-            r = requests.get(url, timeout=20)
+            r = requests.get(url, timeout=20,verify=False)
             #typical response from the API
             #         {
             # "latitude": 12.875,
@@ -86,7 +86,7 @@ class fetchGeoWeatherDetails():
 
         url = f"https://archive-api.open-meteo.com/v1/archive?latitude={lat}&longitude={lon}&start_date={start_date}&end_date={end_date}&hourly=temperature_2m,relativehumidity_2m,pm10,pm2_5"
         try:
-            r = requests.get(url, timeout=20)
+            r = requests.get(url, timeout=20,verify=False)
             data = r.json()
             logger.info(f"Historical Weather API response: {data}")
             return data

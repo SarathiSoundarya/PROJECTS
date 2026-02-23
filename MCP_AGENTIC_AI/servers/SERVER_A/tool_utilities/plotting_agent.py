@@ -22,39 +22,41 @@ def extract_ai_message(result: dict) -> str:
 
     return ""
 
-def execute_plotting_agent(user_query, shared_folder,csv_filename):
+def execute_plotting_agent(user_query, chat_session_id, chat_id, csv_filename):
     try:
         # Set your API key
-        
+        shared_folder = r"C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1"
+        shared_folder = Path(shared_folder) / str(chat_session_id) / str(chat_id)
         logger.info(f"Invoking {AGENT_NAME} with query: {user_query} and shared folder: {shared_folder} and csv filename: {csv_filename}")
         tools = [python_code_exec_tool]
-        shared_folder = Path(shared_folder)
         shared_folder_parent = shared_folder.parent
-
         csv_path = shared_folder / csv_filename
-
 
         # Direct path check
         if not csv_path.is_file():
 
-            logger.info("CSV not found in shared folder. Searching parent recursively...")
+            print("CSV not found in shared folder. Searching recursively...")
 
-            # Search by exact filename in parent recursively
-            matches = list(shared_folder_parent.glob(f"**/{csv_filename}"))
+            # Search recursively starting from shared folder parent
+            search_root = shared_folder_parent
 
-            if matches:
-                csv_path = max(matches, key=lambda x: x.stat().st_mtime)
-                logger.info(f"CSV file found by name at path: {csv_path}")
+            all_csvs = list(search_root.rglob("*.csv"))
+
+            print(f"Total CSVs found recursively: {len(all_csvs)}")
+
+            if all_csvs:
+                # Prefer files inside the shared folder first
+                preferred = [f for f in all_csvs if shared_folder in f.parents]
+
+                if preferred:
+                    csv_path = max(preferred, key=lambda x: x.stat().st_mtime)
+                else:
+                    csv_path = max(all_csvs, key=lambda x: x.stat().st_mtime)
+
+                print(f"CSV selected: {csv_path}")
 
             else:
-                # Fallback → latest csv anywhere in parent recursively
-                all_csvs = list(shared_folder_parent.glob("**/*.csv"))
-
-                if all_csvs:
-                    csv_path = max(all_csvs, key=lambda x: x.stat().st_mtime)
-                    logger.info(f"Latest CSV found recursively at path: {csv_path}")
-                else:
-                    csv_path = None
+                csv_path = None
 
 
         # Final validation

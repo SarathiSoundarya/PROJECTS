@@ -666,3 +666,133 @@ geopy.exc.GeocoderUnavailable: HTTPSConnectionPool(host='nominatim.openstreetmap
 3  2026-01-01T03:00         -1.5        60  None  None  40.712728 -74.006015
 4  2026-01-01T04:00         -1.0        62  None  None  40.712728 -74.006015
 2026-02-23 09:14:58,521 - __main__ - INFO - external_services_server.py:161 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_MATERIALS\PROJECTS\MCP_AGENTIC_AI\static\1\20\1\new york city_2026-01-01_2026-01-11_60546b82-e3ac-4221-b3f1-55fc5f505512.csv
+2026-02-23 15:05:54,109 - __main__ - INFO - external_services_server.py:118 - In the fetch_environmental_data tool, received place: new york city, start_date: 2026-01-01, end_date: 2026-01-11, shared_folder: C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\21\1
+2026-02-23 15:05:55,688 - urllib3.connectionpool - WARNING - connectionpool.py:868 - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=new+york+city&format=json&limit=1
+2026-02-23 15:05:56,706 - urllib3.connectionpool - WARNING - connectionpool.py:868 - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=new+york+city&format=json&limit=1
+2026-02-23 15:05:57,483 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:35 - Geocoding result for city 'new york city': New York, United States
+2026-02-23 15:05:57,486 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:37 - Latitude: 40.7127281, Longitude: -74.0060152, Full Address: New York, United States
+2026-02-23 15:06:04,425 - __main__ - INFO - external_services_server.py:154 - Head of data:          timestamp  temperature  humidity  pm10 pm2_5   latitude  longitude
+0  2026-01-01T00:00         -2.5        53  None  None  40.712728 -74.006015
+1  2026-01-01T01:00         -2.5        56  None  None  40.712728 -74.006015
+2  2026-01-01T02:00         -2.0        58  None  None  40.712728 -74.006015
+3  2026-01-01T03:00         -1.5        60  None  None  40.712728 -74.006015
+4  2026-01-01T04:00         -1.0        62  None  None  40.712728 -74.006015
+2026-02-23 15:06:04,554 - __main__ - INFO - external_services_server.py:161 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\21\1\new york city_2026-01-01_2026-01-11_37df9f88-40ad-4975-bcfd-36347e63d5b8.csv
+2026-02-23 15:27:29,982 - __main__ - INFO - external_services_server.py:118 - In the fetch_environmental_data tool, received place: New York City, start_date: 2026-01-01, end_date: 2026-01-11, shared_folder: C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\22\1
+2026-02-23 15:27:31,247 - urllib3.connectionpool - WARNING - connectionpool.py:868 - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=New+York+City&format=json&limit=1
+2026-02-23 15:27:31,390 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:35 - Geocoding result for city 'New York City': New York, United States
+2026-02-23 15:27:31,397 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:37 - Latitude: 40.7127281, Longitude: -74.0060152, Full Address: New York, United States
+2026-02-23 15:27:37,580 - __main__ - ERROR - external_services_server.py:164 - Error in fetch_environmental_data tool: HTTPSConnectionPool(host='archive-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/archive?latitude=40.7127281&longitude=-74.0060152&start_date=2026-01-01&end_date=2026-01-11&hourly=temperature_2m,relativehumidity_2m,pm10,pm2_5 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)'))) with traceback:Traceback (most recent call last):
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 1042, in _create
+    self.do_handshake()
+  File "C:\Users\soundarya.sarathi\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 1320, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='archive-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/archive?latitude=40.7127281&longitude=-74.0060152&start_date=2026-01-01&end_date=2026-01-11&hourly=temperature_2m,relativehumidity_2m,pm10,pm2_5 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\servers\SERVER_B\external_services_server.py", line 135, in fetch_environmental_data
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='archive-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/archive?latitude=40.7127281&longitude=-74.0060152&start_date=2026-01-01&end_date=2026-01-11&hourly=temperature_2m,relativehumidity_2m,pm10,pm2_5 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)')))
+
+2026-02-23 15:35:49,042 - __main__ - INFO - external_services_server.py:118 - In the fetch_environmental_data tool, received place: New York City, start_date: 2026-01-01, end_date: 2026-01-11, shared_folder: C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\23\1
+2026-02-23 15:35:49,570 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:35 - Geocoding result for city 'New York City': New York, United States
+2026-02-23 15:35:49,570 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:37 - Latitude: 40.7127281, Longitude: -74.0060152, Full Address: New York, United States
+2026-02-23 15:35:52,833 - __main__ - INFO - external_services_server.py:154 - Head of data:          timestamp  temperature  humidity  pm10 pm2_5   latitude  longitude
+0  2026-01-01T00:00         -2.5        53  None  None  40.712728 -74.006015
+1  2026-01-01T01:00         -2.5        56  None  None  40.712728 -74.006015
+2  2026-01-01T02:00         -2.0        58  None  None  40.712728 -74.006015
+3  2026-01-01T03:00         -1.5        60  None  None  40.712728 -74.006015
+4  2026-01-01T04:00         -1.0        62  None  None  40.712728 -74.006015
+2026-02-23 15:35:52,861 - __main__ - INFO - external_services_server.py:161 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\23\1\New York City_2026-01-01_2026-01-11_d44ec172-994e-4bf2-96cb-584f67894823.csv
+2026-02-23 16:06:11,144 - __main__ - INFO - external_services_server.py:119 - In the fetch_environmental_data tool, received place: new york city, start_date: 2026-01-01, end_date: 2026-01-11, chat_session_id: 25, chat_id: 1
+2026-02-23 16:06:12,438 - urllib3.connectionpool - WARNING - connectionpool.py:868 - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=new+york+city&format=json&limit=1
+2026-02-23 16:06:13,458 - urllib3.connectionpool - WARNING - connectionpool.py:868 - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=new+york+city&format=json&limit=1
+2026-02-23 16:06:14,585 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:35 - Geocoding result for city 'new york city': New York, United States
+2026-02-23 16:06:14,585 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:37 - Latitude: 40.7127281, Longitude: -74.0060152, Full Address: New York, United States
+2026-02-23 16:06:18,060 - __main__ - INFO - external_services_server.py:155 - Head of data:          timestamp  temperature  humidity  pm10 pm2_5   latitude  longitude
+0  2026-01-01T00:00         -2.5        53  None  None  40.712728 -74.006015
+1  2026-01-01T01:00         -2.5        56  None  None  40.712728 -74.006015
+2  2026-01-01T02:00         -2.0        58  None  None  40.712728 -74.006015
+3  2026-01-01T03:00         -1.5        60  None  None  40.712728 -74.006015
+4  2026-01-01T04:00         -1.0        62  None  None  40.712728 -74.006015
+2026-02-23 16:06:18,093 - __main__ - INFO - external_services_server.py:163 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\25\1\new york city_2026-01-01_2026-01-11_fefd76a3-bf46-4ab6-af17-4f496c12e84b.csv
+2026-02-23 16:14:15,246 - __main__ - INFO - external_services_server.py:119 - In the fetch_environmental_data tool, received place: new york city, start_date: 2026-01-01, end_date: 2026-01-11, chat_session_id: 26, chat_id: 1
+2026-02-23 16:14:15,853 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:35 - Geocoding result for city 'new york city': New York, United States
+2026-02-23 16:14:15,853 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:37 - Latitude: 40.7127281, Longitude: -74.0060152, Full Address: New York, United States
+2026-02-23 16:14:20,980 - __main__ - INFO - external_services_server.py:155 - Head of data:          timestamp  temperature  humidity  pm10 pm2_5   latitude  longitude
+0  2026-01-01T00:00         -2.5        53  None  None  40.712728 -74.006015
+1  2026-01-01T01:00         -2.5        56  None  None  40.712728 -74.006015
+2  2026-01-01T02:00         -2.0        58  None  None  40.712728 -74.006015
+3  2026-01-01T03:00         -1.5        60  None  None  40.712728 -74.006015
+4  2026-01-01T04:00         -1.0        62  None  None  40.712728 -74.006015
+2026-02-23 16:14:20,993 - __main__ - INFO - external_services_server.py:163 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\26\1\new york city_2026-01-01_2026-01-11_cd375d0c-4b98-428e-9dcc-a928ff2d19a8.csv
+2026-02-23 16:44:46,502 - __main__ - INFO - external_services_server.py:119 - In the fetch_environmental_data tool, received place: new york city, start_date: 2026-01-01, end_date: 2026-01-11, chat_session_id: 27, chat_id: 1
+2026-02-23 16:44:47,036 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:35 - Geocoding result for city 'new york city': New York, United States
+2026-02-23 16:44:47,036 - tool_utilities.geo_weather_tool - INFO - geo_weather_tool.py:37 - Latitude: 40.7127281, Longitude: -74.0060152, Full Address: New York, United States
+2026-02-23 16:44:50,010 - __main__ - INFO - external_services_server.py:155 - Head of data:          timestamp  temperature  humidity  pm10 pm2_5   latitude  longitude
+0  2026-01-01T00:00         -2.5        53  None  None  40.712728 -74.006015
+1  2026-01-01T01:00         -2.5        56  None  None  40.712728 -74.006015
+2  2026-01-01T02:00         -2.0        58  None  None  40.712728 -74.006015
+3  2026-01-01T03:00         -1.5        60  None  None  40.712728 -74.006015
+4  2026-01-01T04:00         -1.0        62  None  None  40.712728 -74.006015
+2026-02-23 16:44:50,025 - __main__ - INFO - external_services_server.py:163 - Saved the data at :C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1\27\1\new york city_2026-01-01_2026-01-11_8664583c-0bfb-44d2-a2ac-10c1a0c57a82.csv

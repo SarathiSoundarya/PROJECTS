@@ -94,7 +94,7 @@ async def chat(req: ChatRequest):
 
         messages.append({
             "role": "user",
-            "content": user_query + "Please save any files to the shared folder and include the file path in your response. Shared folder path: " + str(shared_folder)
+            "content": user_query + f" Pass the chat session id: {chat_session_id} and chat id: {chat_id} to any tools that require them."
         })
     
         response = await agent.ainvoke({
@@ -228,7 +228,7 @@ async def build_agent():
     If asked for plotting or analysis:
     1. Fetch CSV data using the best tool if not already provided in the query.
     2. Perform plotting/analysis for the csv data. MANDATORY to pass the CORRECT csv filename returned from the previous tool to the analysis/plotting tool. Do NOT pass any imaginary filename, only use the filename returned from the file retrieval tool.
-    3. Save results to shared folder
+    3. Pass the chat session id and chat id to the tools that require them for saving files to the shared folder. You are capable to plotting by calling the data visualization tool and you are capable of doing analysis by calling the data analysis tool.
     4. MANDATORILY to USE the correct filename returned from the tool for saving the results and include the file name in the response.This instruction is of utmost importance,
     5.Mandatory to Include all the filenames in the response and do not include any file paths.
     6. You can even use the csv file paths in the previous response, in case the query seems like a follow-up and the user is asking for analysis or plotting after the csv file has been provided in the previous response. Just make sure to use the correct csv filename from the previous response and pass only the filename instead of the whole file path to the agent.

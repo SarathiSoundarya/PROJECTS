@@ -18,8 +18,10 @@ def extract_ai_message(result: dict) -> str:
 
     return ""
 
-def execute_analysis_agent(user_query, shared_folder, csv_filename):
+def execute_analysis_agent(user_query, chat_session_id, chat_id, csv_filename):
     try:
+        shared_folder = r"C:\Users\soundarya.sarathi\OneDrive - Accenture\study_materials\PROJECTS\MCP_AGENTIC_AI\static\1"
+        shared_folder = Path(shared_folder) / str(chat_session_id) / str(chat_id)
         logger.info(f"Invoking {AGENT_NAME} with query: {user_query} and shared folder: {shared_folder} and csv filename: {csv_filename}")
         tools = [python_code_exec_tool]
         
@@ -28,30 +30,31 @@ def execute_analysis_agent(user_query, shared_folder, csv_filename):
 
         csv_path = shared_folder / csv_filename
 
-
         # Direct path check
         if not csv_path.is_file():
 
-            csv_path = None
+            print("CSV not found in shared folder. Searching recursively...")
 
-            #  Search in parent recursively
-            for file in shared_folder_parent.glob("**/*.csv"):
-                if file.name == csv_filename:
-                    csv_path = file
-                    logger.info(f"CSV file found at path: {csv_path}")
-                    break
+            # Search recursively starting from shared folder parent
+            search_root = shared_folder_parent
 
-            # Fallback → latest csv in parent
-            if csv_path is None:
-                latest_csv = max(
-                    shared_folder_parent.glob("*.csv"),
-                    key=lambda x: x.stat().st_mtime,
-                    default=None
-                )
+            all_csvs = list(search_root.rglob("*.csv"))
 
-                if latest_csv:
-                    csv_path = latest_csv
-                    logger.info(f"Latest CSV file found at path: {csv_path}")
+            print(f"Total CSVs found recursively: {len(all_csvs)}")
+
+            if all_csvs:
+                # Prefer files inside the shared folder first
+                preferred = [f for f in all_csvs if shared_folder in f.parents]
+
+                if preferred:
+                    csv_path = max(preferred, key=lambda x: x.stat().st_mtime)
+                else:
+                    csv_path = max(all_csvs, key=lambda x: x.stat().st_mtime)
+
+                print(f"CSV selected: {csv_path}")
+
+            else:
+                csv_path = None
 
 
         # 4 Final validation

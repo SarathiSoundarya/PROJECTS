@@ -1,0 +1,22 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN mkdir -p static
+
+EXPOSE 6000 8700
+
+CMD bash -c "\
+python data_and_intelligence_server.py & \
+python external_services_server.py & \
+python fastapi_app.py --port 6000 & \
+streamlit run streamlit_app.py --server.port 8700 --server.address 0.0.0.0 \
+"
