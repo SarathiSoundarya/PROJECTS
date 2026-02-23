@@ -27,7 +27,7 @@ The system uses a LangChain agent with MCP (Model Context Protocol) to orchestra
 
 <img src="images/chatbot_accelerated_working-gif.gif" width="750"/>
 
-[Watch the full bot working demo](https://drive.google.com/file/d/1wOrEEeWwlTcA-M79QzTeBHMGIez6mx9I/view?usp=sharing)
+[Click to Watch the full bot working demo](https://drive.google.com/file/d/1wOrEEeWwlTcA-M79QzTeBHMGIez6mx9I/view?usp=sharing)
 
 ---
 
